@@ -3,3 +3,6 @@
 
 #enviroments
 .env
+
+#logs
+/src/logs

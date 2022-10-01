@@ -1,12 +1,15 @@
 //Methods to controlle the user model
 const CustomerService = require('../services/customerService');
+const logger = require('../utils/logger');
 
 //If not recieved any condition in the request, then it will return all the Customers
 const getAllCustomers = (req, res) => {
     CustomerService.getAllCustomers()
         .then(Customers=>{
             res.send(Customers);   
-    });    
+            logger.info('Petición recibida');   
+        })
+        .catch(err=>logger.error(err))    
 };
 
 const getOneCustomer = (req, res) => {

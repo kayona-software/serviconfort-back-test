@@ -1,26 +1,25 @@
-const express = require('express');
-const {users,customers,dni,cities} = require('./v1/routes');
 require('dotenv').config();
-var cors = require('cors');
-var cors = require('cors');
-
+const express = require('express');
+const cors = require('cors');
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 8000;
+const ORIGIN = process.env.ORIGIN || '*';
+const {users,customers,dni,cities} = require('./v1/routes');
+const logger = require('./v1/utils/logger');
 
 var corsOptions = {
-  origin: 'https://netlify.app',
+  origin: ORIGIN,
   optionsSuccessStatus: 200
 }
 
+app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 8000;
-
-app.use("/api/v1/users", cors(corsOptions), users);
-app.use("/api/v1/customers",cors(corsOptions), customers);
-app.use("/api/v1/dni", cors(corsOptions),dni);
-app.use("/api/v1/cities", cors(corsOptions),cities);
+app.use("/api/v1/users", users);
+app.use("/api/v1/customers", customers);
+app.use("/api/v1/dni", dni);
+app.use("/api/v1/cities", cities);
 
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+  logger.info(`Listening on port ${PORT}`);
 });

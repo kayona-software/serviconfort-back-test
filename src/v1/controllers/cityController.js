@@ -1,12 +1,15 @@
 //Methods to controlle the City model
-const CityService = require('../services/CityService');
+const CityService = require('../services/cityService');
+const logger = require('../utils/logger');
 
 //If not recieved any condition in the request, then it will return all the Cities
 const getAllCities = (req, res) => {
     CityService.getAllCities()
         .then(Citys=>{
-            res.send(Citys);   
-    });    
+            res.send(Citys);
+            logger.info('Petición recibida');   
+        })
+        .catch(err=>logger.error(err))    
 };
 
 const getOneCity = (req, res) => {

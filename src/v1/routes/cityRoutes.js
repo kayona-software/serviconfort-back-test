@@ -1,5 +1,4 @@
 //City routes
-
 const express = require('express');
 const cityController = require('../controllers/cityController');
 

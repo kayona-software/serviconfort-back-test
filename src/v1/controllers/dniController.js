@@ -1,12 +1,15 @@
 //Methods to controlle the dni model
 const DNIService = require('../services/dniService');
+const logger = require('../utils/logger');
 
 //If not recieved any condition in the request, then it will return all the DNIs
 const getAllDNIs = (req, res) => {
     DNIService.getAllDNIs()
         .then(DNIs=>{
             res.send(DNIs);   
-    });    
+            logger.info('Petición recibida');   
+        })
+        .catch(err=>logger.error(err))     
 };
 
 const getOneDNI = (req, res) => {
