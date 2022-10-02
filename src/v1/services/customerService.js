@@ -17,8 +17,8 @@ const updateCustomer = () => {
     return;
 };
   
-const deleteCustomer = () => {
-    return;
+const deleteCustomer = (CustomerId) => {
+    return customers.deleteCustomer(CustomerId);
 };
   
 module.exports = {

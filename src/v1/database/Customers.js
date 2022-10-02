@@ -8,15 +8,35 @@ const getAllCustomers = () => {
             (err, rows) => {
                 if (!err) {
                     resolve(rows);
-                    logger.info('Petición aceptada');
+                    logger.info('Se ejecuta query');
                 } else {
                     reject(err);
                     logger.err(err);
                 }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
             }
         );
     });
 };
 
+const deleteCustomer = (CustomerId) => {
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(
+            `call sp_delete_customer(${CustomerId})`,
+            (err, rows) => {
+                if (!err) {
+                    resolve(rows);
+                    logger.info('Se ejecuta query');
+                } else {
+                    reject(err);
+                    logger.err(err);
+                }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
+            }
+        );
+    });
+};
 
-module.exports = { getAllCustomers };
+module.exports = { getAllCustomers,deleteCustomer };

@@ -11,7 +11,7 @@ const mysqlConnection = mysql.createConnection({
     multipleStatements:true
 })
 
-
+/*
 mysqlConnection.connect((err)=>{
     if(err){
         logger.error(err);
@@ -21,5 +21,6 @@ mysqlConnection.connect((err)=>{
     }
 
 })
+*/
 
 module.exports=mysqlConnection;

@@ -7,7 +7,7 @@ const getAllUsers = (req, res) => {
     userService.getAllUsers()
         .then(users=>{
             res.send(users);   
-            logger.info('Petición recibida');   
+            logger.info('Devolviendo lista de usuarios');   
         })
         .catch(err=>logger.error(err))      
 };

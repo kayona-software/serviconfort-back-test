@@ -7,7 +7,7 @@ const getAllDNIs = (req, res) => {
     DNIService.getAllDNIs()
         .then(DNIs=>{
             res.send(DNIs);   
-            logger.info('Petición recibida');   
+            logger.info('Devolviendo lista de tipo de DNI');   
         })
         .catch(err=>logger.error(err))     
 };

@@ -7,7 +7,7 @@ const getAllCustomers = (req, res) => {
     CustomerService.getAllCustomers()
         .then(Customers=>{
             res.send(Customers);   
-            logger.info('Petición recibida');   
+            logger.info('Devolviendo lista de clientes');   
         })
         .catch(err=>logger.error(err))    
 };
@@ -28,8 +28,9 @@ const updateCustomer = (req, res) => {
 };
 
 const deleteCustomer = (req, res) => {
-    const deletedCustomer =  CustomerService.deleteCustomer();
+    const deletedCustomer =  CustomerService.deleteCustomer(req.params.CustomerId);
     res.send(`Delete Customer with id: ${req.params.CustomerId}`);
+    logger.info(`Delete Customer with id: ${req.params.CustomerId}`);
 };
 
 module.exports = {  getAllCustomers, getOneCustomer, createCustomer, updateCustomer, deleteCustomer };  //Export the methods to be used in the controller

@@ -7,7 +7,7 @@ const getAllCities = (req, res) => {
     CityService.getAllCities()
         .then(Citys=>{
             res.send(Citys);
-            logger.info('Petición recibida');   
+            logger.info('Devolviendo lista de ciudades');   
         })
         .catch(err=>logger.error(err))    
 };

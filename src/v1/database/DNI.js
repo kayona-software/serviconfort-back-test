@@ -13,8 +13,11 @@ const getAllDNIs = () => {
                     reject(err);
                     logger.err(err);
                 }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
             }
         );
+
     });
 };
 
