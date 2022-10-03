@@ -11,7 +11,7 @@ const getAllCustomers = () => {
                     logger.info('Se ejecuta query');
                 } else {
                     reject(err);
-                    logger.err(err);
+                    logger.error(err);
                 }
                 mysqlConnection.destroy;
                 logger.info('Conexión a BD cerrada');
@@ -30,7 +30,7 @@ const deleteCustomer = (CustomerId) => {
                     logger.info('Se ejecuta query');
                 } else {
                     reject(err);
-                    logger.err(err);
+                    logger.error(err);
                 }
                 mysqlConnection.destroy;
                 logger.info('Conexión a BD cerrada');

@@ -11,7 +11,7 @@ const getAllUsers = () => {
                     logger.info('Petición aceptada');
                 } else {
                     reject(err);
-                    logger.err(err);
+                    logger.error(err);
                 }
                 mysqlConnection.destroy;
                 logger.info('Conexión a BD cerrada');
