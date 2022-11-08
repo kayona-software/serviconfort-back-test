@@ -20,6 +20,26 @@ const getAllCustomers = () => {
     });
 };
 
+//Obtener un solo cliente con sus datos
+const getOneCustomer = (CustomerId) => {
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(
+            `call sp_view_customer(${CustomerId})`,
+            (err, rows) => {
+                if (!err) {
+                    resolve(rows);
+                    logger.info('Se ejecuta query');
+                } else {
+                    reject(err);
+                    logger.error(err);
+                }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
+            }
+        );
+    });
+};
+
 const deleteCustomer = (CustomerId) => {
     return new Promise((resolve, reject) => {
         mysqlConnection.query(
@@ -39,4 +59,4 @@ const deleteCustomer = (CustomerId) => {
     });
 };
 
-module.exports = { getAllCustomers,deleteCustomer };
+module.exports = { getAllCustomers, deleteCustomer, getOneCustomer };

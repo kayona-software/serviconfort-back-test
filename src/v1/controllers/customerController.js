@@ -2,8 +2,8 @@
 const CustomerService = require('../services/customerService');
 const logger = require('../utils/logger');
 
-//If not recieved any condition in the request, then it will return all the Customers
 const getAllCustomers = (req, res) => {
+    logger.info(`[GET] Clientes desde ${req.connection.remoteAddress}`)
     CustomerService.getAllCustomers()
         .then(Customers=>{
             res.send(Customers);   
@@ -13,8 +13,12 @@ const getAllCustomers = (req, res) => {
 };
 
 const getOneCustomer = (req, res) => {
-    const Customer =CustomerService.deleteCustomer();
-    res.send(`Get Customer with id: ${req.params.CustomerId}`);
+    CustomerService.getOneCustomer(req.params.CustomerId)
+        .then(Customer=>{
+            res.send(Customer);
+            logger.info(`Devolviendo info del Cliente con id: ${req.params.CustomerId} `)
+        })
+        .catch(err=>logger.error(err))
 };
 
 const createCustomer = (req, res) => {
@@ -28,9 +32,12 @@ const updateCustomer = (req, res) => {
 };
 
 const deleteCustomer = (req, res) => {
-    const deletedCustomer =  CustomerService.deleteCustomer(req.params.CustomerId);
-    res.send(`Delete Customer with id: ${req.params.CustomerId}`);
-    logger.info(`Delete Customer with id: ${req.params.CustomerId}`);
+    CustomerService.deleteCustomer(req.params.CustomerId)
+        .then(()=>{
+            res.send([`Cliente con id: ${req.params.CustomerId} eliminado`]); //Verificar que se hace con el res
+            logger.info(`Cliente con id: ${req.params.CustomerId} eliminado`);
+        })
+        .catch(err=>logger.error(err))
 };
 
 module.exports = {  getAllCustomers, getOneCustomer, createCustomer, updateCustomer, deleteCustomer };  //Export the methods to be used in the controller

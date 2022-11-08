@@ -5,8 +5,8 @@ const getAllCustomers = () => {
     return customers.getAllCustomers();
 };
   
-const getOneCustomer = () => {
-    return;
+const getOneCustomer = (CustomerId) => {
+    return customers.getOneCustomer(CustomerId);
 };
   
 const createCustomer = () => {
