@@ -20,11 +20,50 @@ const getAllCustomers = () => {
     });
 };
 
+const getResumeCustomers = () => {
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(
+            "select * from customers_select",
+            (err, rows) => {
+                if (!err) {
+                    resolve(rows);
+                    logger.info('Se ejecuta query');
+                } else {
+                    reject(err);
+                    logger.error(err);
+                }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
+            }
+        );
+    });
+};
+
 //Obtener un solo cliente con sus datos
 const getOneCustomer = (CustomerId) => {
     return new Promise((resolve, reject) => {
         mysqlConnection.query(
             `call sp_view_customer(${CustomerId})`,
+            (err, rows) => {
+                if (!err) {
+                    resolve(rows);
+                    logger.info('Se ejecuta query');
+                } else {
+                    reject(err);
+                    logger.error(err);
+                }
+                mysqlConnection.destroy;
+                logger.info('Conexión a BD cerrada');
+            }
+        );
+    });
+};
+
+//Obtener ordenes abiertas de un cliente
+const getOpenOrders = (CustomerId) => {
+    return new Promise((resolve, reject) => {
+        mysqlConnection.query(
+            `call sp_view_customer_op_orders(${CustomerId})`,
             (err, rows) => {
                 if (!err) {
                     resolve(rows);
@@ -59,4 +98,4 @@ const deleteCustomer = (CustomerId) => {
     });
 };
 
-module.exports = { getAllCustomers, deleteCustomer, getOneCustomer };
+module.exports = { getAllCustomers, getResumeCustomers, deleteCustomer, getOneCustomer, getOpenOrders };

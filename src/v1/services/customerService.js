@@ -4,9 +4,17 @@ const customers = require('../database/Customers');
 const getAllCustomers = () => {
     return customers.getAllCustomers();
 };
+
+const getResumeCustomers = () => {
+    return customers.getResumeCustomers();
+};
   
 const getOneCustomer = (CustomerId) => {
     return customers.getOneCustomer(CustomerId);
+};
+
+const getOpenOrders = (CustomerId) => {
+    return customers.getOpenOrders(CustomerId);
 };
   
 const createCustomer = () => {
@@ -23,8 +31,10 @@ const deleteCustomer = (CustomerId) => {
   
 module.exports = {
     getAllCustomers,
+    getResumeCustomers,
     getOneCustomer,
     createCustomer,
     updateCustomer,
     deleteCustomer,
+    getOpenOrders
 };

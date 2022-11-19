@@ -12,11 +12,30 @@ const getAllCustomers = (req, res) => {
         .catch(err=>logger.error(err))    
 };
 
+const getResumeCustomers = (req, res) => {
+    logger.info(`[GET] Clientes desde ${req.connection.remoteAddress}`)
+    CustomerService.getResumeCustomers()
+        .then(Customers=>{
+            res.send(Customers);   
+            logger.info('Devolviendo lista de clientes');   
+        })
+        .catch(err=>logger.error(err))    
+};
+
 const getOneCustomer = (req, res) => {
     CustomerService.getOneCustomer(req.params.CustomerId)
         .then(Customer=>{
             res.send(Customer);
             logger.info(`Devolviendo info del Cliente con id: ${req.params.CustomerId} `)
+        })
+        .catch(err=>logger.error(err))
+};
+
+const getOpenOrders = (req, res) => {
+    CustomerService.getOpenOrders(req.params.CustomerId)
+        .then(Customer=>{
+            res.send(Customer[0]);
+            logger.info(`Devolviendo Ordenes abiertas del cliente: ${req.params.CustomerId} `)
         })
         .catch(err=>logger.error(err))
 };
@@ -40,4 +59,4 @@ const deleteCustomer = (req, res) => {
         .catch(err=>logger.error(err))
 };
 
-module.exports = {  getAllCustomers, getOneCustomer, createCustomer, updateCustomer, deleteCustomer };  //Export the methods to be used in the controller
+module.exports = {  getAllCustomers, getResumeCustomers, getOneCustomer, createCustomer, updateCustomer, deleteCustomer , getOpenOrders};  //Export the methods to be used in the controller
