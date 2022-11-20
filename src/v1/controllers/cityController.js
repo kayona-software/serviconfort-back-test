@@ -9,7 +9,10 @@ const getAllCities = (req, res) => {
             res.send(Citys);
             logger.info('Devolviendo lista de ciudades');   
         })
-        .catch(err=>logger.error(err))    
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        })   
 };
 
 const getOneCity = (req, res) => {

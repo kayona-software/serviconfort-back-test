@@ -9,7 +9,10 @@ const getAllProducts = (req, res) => {
             res.send(Products);
             logger.info('Devolviendo lista de productos');   
         })
-        .catch(err=>logger.error(err))    
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        })     
 };
 
 const getOneProduct = (req, res) => {
@@ -33,7 +36,10 @@ const deleteProduct = (req, res) => {
             res.send([`Producto con id: ${req.params.ProductId} eliminado`]); //Verificar que se hace con el res
             logger.info(`Producto con id: ${req.params.ProductId} eliminado`);
         })
-        .catch(err=>logger.error(err))
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        }) 
 };
 
 module.exports = {  getAllProducts, getOneProduct, createProduct, updateProduct, deleteProduct };  //Export the methods to be used in the controller

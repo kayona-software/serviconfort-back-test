@@ -9,7 +9,10 @@ const getAllCustomers = (req, res) => {
             res.send(Customers);   
             logger.info('Devolviendo lista de clientes');   
         })
-        .catch(err=>logger.error(err))    
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        })       
 };
 
 const getResumeCustomers = (req, res) => {
@@ -19,7 +22,10 @@ const getResumeCustomers = (req, res) => {
             res.send(Customers);   
             logger.info('Devolviendo lista de clientes');   
         })
-        .catch(err=>logger.error(err))    
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        })    
 };
 
 const getOneCustomer = (req, res) => {
@@ -28,7 +34,10 @@ const getOneCustomer = (req, res) => {
             res.send(Customer);
             logger.info(`Devolviendo info del Cliente con id: ${req.params.CustomerId} `)
         })
-        .catch(err=>logger.error(err))
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        }) 
 };
 
 const getOpenOrders = (req, res) => {
@@ -37,7 +46,10 @@ const getOpenOrders = (req, res) => {
             res.send(Customer[0]);
             logger.info(`Devolviendo Ordenes abiertas del cliente: ${req.params.CustomerId} `)
         })
-        .catch(err=>logger.error(err))
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        }) 
 };
 
 const createCustomer = (req, res) => {
@@ -56,7 +68,10 @@ const deleteCustomer = (req, res) => {
             res.send([`Cliente con id: ${req.params.CustomerId} eliminado`]); //Verificar que se hace con el res
             logger.info(`Cliente con id: ${req.params.CustomerId} eliminado`);
         })
-        .catch(err=>logger.error(err))
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        }) 
 };
 
 module.exports = {  getAllCustomers, getResumeCustomers, getOneCustomer, createCustomer, updateCustomer, deleteCustomer , getOpenOrders};  //Export the methods to be used in the controller

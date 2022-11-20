@@ -21,9 +21,11 @@ app.use("/api/v1/dni", dni);
 app.use("/api/v1/cities", cities);
 app.use("/api/v1/products", products);
 
+
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   console.log('addr: '+add);
 })
+
 
 app.listen(PORT, () => {
   logger.info(`Listening on port ${PORT}`);

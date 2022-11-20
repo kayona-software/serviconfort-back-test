@@ -9,7 +9,10 @@ const getAllDNIs = (req, res) => {
             res.send(DNIs);   
             logger.info('Devolviendo lista de tipo de DNI');   
         })
-        .catch(err=>logger.error(err))     
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        }) 
 };
 
 const getOneDNI = (req, res) => {

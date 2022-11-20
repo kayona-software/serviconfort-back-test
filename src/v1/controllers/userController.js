@@ -9,7 +9,10 @@ const getAllUsers = (req, res) => {
             res.send(users);   
             logger.info('Devolviendo lista de usuarios');   
         })
-        .catch(err=>logger.error(err))      
+        .catch(err=>{
+            res.status(500).send('Not Found');
+            logger.error(err);
+        })     
 };
 
 const getOneUser = (req, res) => {

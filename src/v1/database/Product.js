@@ -3,7 +3,8 @@ const mysqlConnection = require("./connection.js");
 
 const getAllProducts = () => {
     return new Promise((resolve, reject) => {
-        mysqlConnection.query(
+        const my=mysqlConnection();
+        my.query(
             "select * from products_view",
             (err, rows) => {
                 if (!err) {
@@ -13,7 +14,7 @@ const getAllProducts = () => {
                     reject(err);
                     logger.error(err);
                 }
-                mysqlConnection.destroy;
+                my.destroy;
                 logger.info('Conexión a BD cerrada');
             }
         );
@@ -23,7 +24,8 @@ const getAllProducts = () => {
 
 const deleteProduct = (ProductId) => {
     return new Promise((resolve, reject) => {
-        mysqlConnection.query(
+        const my=mysqlConnection();
+        my.query(
             `call sp_delete_product(${ProductId})`,
             (err, rows) => {
                 if (!err) {
@@ -33,7 +35,7 @@ const deleteProduct = (ProductId) => {
                     reject(err);
                     logger.error(err);
                 }
-                mysqlConnection.destroy;
+                my.destroy;
                 logger.info('Conexión a BD cerrada');
             }
         );

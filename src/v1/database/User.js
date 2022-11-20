@@ -3,7 +3,8 @@ const mysqlConnection = require("./connection.js");
 
 const getAllUsers = () => {
     return new Promise((resolve, reject) => {
-        mysqlConnection.query(
+        const my=mysqlConnection();
+        my.query(
             "select * from user_view",
             (err, rows) => {
                 if (!err) {
@@ -13,7 +14,7 @@ const getAllUsers = () => {
                     reject(err);
                     logger.error(err);
                 }
-                mysqlConnection.destroy;
+                my.destroy;
                 logger.info('Conexión a BD cerrada');
             }
         );
