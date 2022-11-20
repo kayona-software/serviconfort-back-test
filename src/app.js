@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 8000;
 const ORIGIN = process.env.ORIGIN || '*';
-const {users,customers,dni,cities,products} = require('./v1/routes');
+const {users,customers,dni,cities,products,orders} = require('./v1/routes');
 const logger = require('./v1/utils/logger');
 const dns = require('dns');
 
@@ -20,6 +20,7 @@ app.use("/api/v1/customers", customers);
 app.use("/api/v1/dni", dni);
 app.use("/api/v1/cities", cities);
 app.use("/api/v1/products", products);
+app.use("/api/v1/orders", orders);
 
 
 require('dns').lookup(require('os').hostname(), function (err, add, fam) {
