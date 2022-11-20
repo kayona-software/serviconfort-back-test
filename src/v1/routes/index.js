@@ -5,11 +5,13 @@ const customers = require("./customerRoutes.js");
 const cities  = require("./cityRoutes.js");
 const dni = require("./dniRoutes.js");
 const products = require("./productRoutes.js");
+const orders = require("./orderRoutes.js");
 
 module.exports={
     users,
     customers,
     cities,
     dni,
-    products
+    products,
+    orders
 };

@@ -42,8 +42,8 @@ const getOneCustomer = (req, res) => {
 
 const getOpenOrders = (req, res) => {
     CustomerService.getOpenOrders(req.params.CustomerId)
-        .then(Customer=>{
-            res.send(Customer[0]);
+        .then(OpenOrders=>{
+            res.send(OpenOrders[0]);
             logger.info(`Devolviendo Ordenes abiertas del cliente: ${req.params.CustomerId} `)
         })
         .catch(err=>{
